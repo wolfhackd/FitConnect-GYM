@@ -1,0 +1,34 @@
+{
+  "name": "fitconnect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfhackd/FitConnect-GYM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/wolfhackd/FitConnect-GYM/issues"
+  },
+  "homepage": "https://github.com/wolfhackd/FitConnect-GYM#readme",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "fastify": "^5.6.2",
+    "pg": "^8.16.3",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "dotenv": "^17.2.3",
+    "prisma": "^7.2.0"
+  }
+}
