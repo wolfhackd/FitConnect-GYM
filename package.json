@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch server.ts"
+    "dev": "cross-env NODE_ENV=development tsx watch server.ts",
+    "build": "tsc",
+    "start": "cross-env NODE_ENV=production node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,9 @@
   },
   "homepage": "https://github.com/wolfhackd/FitConnect-GYM#readme",
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.0.0",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
     "bcrypt": "^6.0.0",
@@ -31,6 +35,7 @@
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^25.0.3",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "prisma": "^7.2.0"
   }

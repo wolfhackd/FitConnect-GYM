@@ -16,11 +16,23 @@ export const login = async (req: FastifyRequest, reply: FastifyReply ) =>{
     }
 
     const PasswordValid = bcrypt.compareSync(password, user.password);
+
     if(!PasswordValid){
       return reply.status(401).send({message: "Invalid credentials"});
     }
 
-    return reply.status(200).send({message: "Login successful"});
+    const token = reply.server.jwt.sign({},{sub: user.id, expiresIn: '1h'}); 
+
+    reply
+      .setCookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 60 * 60, // 1 hour
+      })
+      .status(200)
+      .send({ message: "Login successful" })
     
   }catch(error){
     console.error("Login error:", error);
