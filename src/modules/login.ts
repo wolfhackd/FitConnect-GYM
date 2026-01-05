@@ -25,11 +25,11 @@ export const login = async (req: FastifyRequest, reply: FastifyReply ) =>{
 
     reply
       .setCookie('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60, // 1 hour
+          httpOnly: true,
+          signed: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: '/',
       })
       .status(200)
       .send({ message: "Login successful" })

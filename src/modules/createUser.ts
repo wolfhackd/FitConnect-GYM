@@ -8,7 +8,7 @@ export const createUser = async (req: FastifyRequest, reply: FastifyReply ) =>{
   
   try{
     const existingUser = await prisma.user.findUnique({
-     where: {email}
+      where: {email}
     })
 
     if(existingUser){
