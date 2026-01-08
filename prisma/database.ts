@@ -1,5 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '../generated/prisma/client/client.js'
+import { env } from '../src/config/env.js';
 
 export class Database {
   private static instance: Database;
@@ -7,7 +8,7 @@ export class Database {
   private isConnected = false;
 
   private constructor() {
-    const connectionString = process.env.DATABASE_URL;
+    const connectionString = env.DATABASE_URL;
 
     if (!connectionString) {
       throw new Error("DATABASE_URL not defined");
@@ -32,11 +33,18 @@ export class Database {
   // 🔌 Conecta explicitamente (útil em bootstrap e testes)
   public async connect(): Promise<void> {
     if (this.isConnected) {
+      console.log("Database is already connected");
       return;
     }
 
-    await this.prisma.$connect();
-    this.isConnected = true;
+    try{
+      console.log("Connecting to the database...");
+      await this.prisma.$connect();
+      this.isConnected = true;
+      console.log("Database connected successfully");
+    }catch(e){
+      console.log(e)
+    }
   }
 
   // 🔌 Fecha conexões (shutdown / testes)
