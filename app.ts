@@ -14,12 +14,11 @@ app.register(fastifyCors, {
   credentials: true
 })
 
-//Configuration
-app.register(fastifyCookie,
-  {
-    secret: env.COOKIE_SECRET!,
-  }
-)
+// Cookie plugin
+app.register(fastifyCookie, {
+  secret: env.COOKIE_SECRET!
+});
+
 
 //Routes
 app.register(authRoutes, {prefix: '/auth'})

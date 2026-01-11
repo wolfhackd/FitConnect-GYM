@@ -1,7 +1,7 @@
 import { User } from "../../database/models/User.js";
 import type { PasswordHash } from "../../shared/password-hash.js";
 import type { UserRepository } from "./user.repository.js";
-import type { IUser, IUserCreate } from "./user.type.js";
+import type { IUser, IUserCreate, IUserLogin } from "./user.type.js";
 
 
 
@@ -38,4 +38,15 @@ export class UserService {
     return IUserSafe
   }
   
+  public loginUser = async ({email, password}: IUserLogin): Promise<IUser> =>{
+    const user = await this.userRepository.findByEmail(email);
+    if(!user){
+      throw new Error("User not found");
+    }
+    const isPasswordValid = await this.passwordHash.compare(password, user.password);
+    if(!isPasswordValid){
+      throw new Error("Invalid password");
+    }
+    return user
+  }
 }
