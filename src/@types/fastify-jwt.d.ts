@@ -1,9 +1,15 @@
-import '@fastify/jwt'
+import type fastify from "fastify";
+import type { IUser } from "../modules/users/user.type.ts";
 
-declare module '@fastify/jwt' {
-  interface FastifyJWT {
-    user: {
-      sub: string
-      role: string
+
+declare global {
+  namespace fastify {
+    interface Request {
+      authContext?: {
+        user: IUser
+      }
     }
-  }}
+  }
+}
+
+export {};
