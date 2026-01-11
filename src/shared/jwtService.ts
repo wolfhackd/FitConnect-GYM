@@ -4,7 +4,7 @@ import type { IAuthPayload } from '../modules/auth/auth.type.js';
 
 export class jwtService {
   private readonly secret = env.JWT_SECRET;
-  private readonly expiresIn = env.JWT_EXPIRES_IN_MINUTES;
+  private readonly expiresIn = env.JWT_EXPIRES_IN_MINUTES * 60;
   private readonly algorithm = env.JWT_ALGORITHM;
 
   public sing({userId}: IAuthPayload ): string | null {
