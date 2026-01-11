@@ -1,6 +1,7 @@
 import app from "./app.js"
-import { database } from "./prisma/database.js";
+
 import { env } from './src/config/env.js';
+import { database } from "./src/database/database.js";
 
 async function startServer(){
   try{

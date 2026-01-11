@@ -1,10 +1,10 @@
 
 import fastifyCors from '@fastify/cors';
 import fastify from 'fastify';
-import { authRoutes } from './src/modules/auth.routes.js';
-import jwt from '@fastify/jwt';
+// import { authRoutes } from './src/modules/auth.routes.js';
 import fastifyCookie from '@fastify/cookie';
 import { env } from './src/config/env.js';
+import { authRoutes } from './src/modules/auth/auth.routes.js';
 
 const app = fastify({logger: true})
 
@@ -20,14 +20,6 @@ app.register(fastifyCookie,
     secret: env.COOKIE_SECRET!,
   }
 )
-
-app.register(jwt,{
-  secret: env.JWT_SECRET!,
-  cookie: {
-    cookieName: 'token',
-    signed: true,
-  },
-})
 
 //Routes
 app.register(authRoutes, {prefix: '/auth'})

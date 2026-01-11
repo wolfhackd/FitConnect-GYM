@@ -12,7 +12,7 @@ export class User {
 
   constructor(
     props: {
-      id?: string,
+    id?: string,
     name: string,
     email: string,
     password: string,
@@ -45,6 +45,17 @@ export class User {
       id: this.id,
       name: this.name,
       email: this.email,
+      role: this.role,
+      createdAt: this.createdAt
+    }
+  }
+
+  toPrisma() {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      password: this._password,
       role: this.role,
       createdAt: this.createdAt
     }

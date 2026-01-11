@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { env } from '../../src/config/env.js';
 import type { IAuthPayload } from '../modules/auth/auth.type.js';
 
-export class jwtService {
+export class JwtService {
   private readonly secret = env.JWT_SECRET;
   private readonly expiresIn = env.JWT_EXPIRES_IN_MINUTES * 60;
   private readonly algorithm = env.JWT_ALGORITHM;
